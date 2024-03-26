@@ -4,12 +4,12 @@
     align-items: center;
   }
   
-  .logo {
+/*   .logo {
     height: 110px;
     width: auto;
     margin-left: 0px;
     margin-top: -10px;
-  }
+  } */
   
   nav {
     display: flex;
