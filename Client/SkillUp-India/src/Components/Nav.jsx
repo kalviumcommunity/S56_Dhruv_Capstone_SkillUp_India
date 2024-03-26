@@ -20,7 +20,7 @@ const Nav = () => {
       <div className='signin-signup'>
         <GrLanguage size={40} className='ln-logo' />
         <p className='Signin'>Sign In</p>  
-        <button class="button-54" role="button">Sign Up</button>
+        <button className="button-54" role="button">Sign Up</button>
       </div>
     </div>
   );
