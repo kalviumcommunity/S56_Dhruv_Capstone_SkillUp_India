@@ -31,6 +31,7 @@ const Nav = () => {
         <GrLanguage size={40} className='ln-logo' />
         <p className='Signin' onClick={SignIn}>Sign In</p>  
         <button onClick={toggleModal} className="button-54" role="button">Sign Up</button>
+
       </div>
 
       {showModal && (
