@@ -3,25 +3,95 @@
 
 .animation-1{
     width: fit-content;
-    margin-left: 800px;
-    margin-top: -20px;
+    margin-left: 830px;
+    margin-top: 0px;
+    /* mix-blend-mode: multiply; */
 
 }
-.bg{
-    background-image: url(../assets/abstract.png);
-}
-h1{
+.title-1{
+    position: absolute;
+    font-family: "Poppins", sans-serif;
+    font-size: 75px;
+    font-weight: 650;
+    font-style: normal;
+   top: 150px;
+   left: 20px;
+}.title-2{
     position: absolute;
     font-family: "Poppins", sans-serif;
     font-size: 70px;
     font-weight: 700;
+    top: 275px;
     font-style: normal;
+    left: 20px;
 }
-h2{
+.cta{
+
     position: absolute;
-    font-family: "Poppins", sans-serif;
-    font-size: 60px;
-    font-weight: 800;
-    font-style: normal;
-top: 50%;
+    top: 69.5%;
+    left: 281px;
+
+}
+.cta-button{
+    width: 100px;
+    height: 50px;
+}
+
+.button-56 {
+  align-items: center;
+  color: white;
+  font-weight: 500;
+  background-color: #0066fe;
+  border: 3px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 60px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: #00a6ff;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
 }
