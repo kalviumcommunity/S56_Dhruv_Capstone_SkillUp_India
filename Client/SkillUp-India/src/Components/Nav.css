@@ -2,6 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 3px solid #444;
+    height:  90px;  
+    cursor: auto;
   }
   
 /*   .logo {
@@ -10,6 +13,7 @@
     margin-left: 0px;
     margin-top: -10px;
   } */
+
   
   nav {
     display: flex;
@@ -34,6 +38,7 @@
   }
   
   nav li a {
+  
     display: flex;
     width: 100%;
     padding: 20px;
@@ -129,6 +134,36 @@
 .logo{
   font-size: 50px;
 }
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1000; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+.close-button {
+  position: absolute;
+  top: 90px;
+  left: 440px;
+ width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
 
 @media (min-width: 768px) {
   .button-54 {

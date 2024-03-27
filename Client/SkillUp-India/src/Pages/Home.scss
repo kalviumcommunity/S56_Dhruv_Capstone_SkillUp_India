@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 100vmax / 1600 * 100;
+  @media (max-width: 992px) {
+    font-size: 60px;
+  }
+}
+:root {
+  --x: 400px;
+  --y: 200px;
+}
+
+.main{
+  @include flexCenter;;
+  font-size: 0.3rem;
+  font-family: 'Aboreto', cursive;
+  background-color: #ffffff;
+  background-image: 
+    conic-gradient(from 270deg at bottom 0.5px right 0.5px, #ffffff 25%, #001aff00 0),
+    radial-gradient(200px at var(--x) var(--y), rgba(#0400ff, 1), rgba(25, 0, 255, 0.2));
+  background-repeat: repeat, no-repeat;
+  background-size: 0.7rem 0.7rem, auto;
+}
+.cursor {
+  position: absolute;
+  top: var(--y);
+  cursor: auto;
+  left: var(--x);
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: transparent; 
+  z-index: 10;
+  pointer-events: none;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 255, 0.1),
+
+.main .cursor {
+  display: block; 
+}
+*:not(.main) .cursor {
+  display: none;
+}
