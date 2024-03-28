@@ -55,9 +55,3 @@ html {
               0 0 100px 0 rgba(0, 0, 255, 0.1);
 }
 
-.main .cursor {
-  display: block; 
-}
-*:not(.main) .cursor {
-  display: none;
-}
