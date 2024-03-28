@@ -5,6 +5,7 @@ import animationData from '../assets/animation.json';
 import animation1 from '../assets/animation1.json';
 import './Home.css'
 import './Home.scss';
+import Footer from '../Components/Footer';
 import anime from '../assets/animation.gif';
 
 const Home = () => {
@@ -51,6 +52,7 @@ const Home = () => {
         </div>
         <div className='cursor' />
       </div>
+      <Footer />
     </>
   )
 }

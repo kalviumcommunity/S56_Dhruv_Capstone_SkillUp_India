@@ -45,9 +45,3 @@ html {
   pointer-events: none;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 255, 0.1),
 
-.main .cursor {
-  display: block; 
-}
-*:not(.main) .cursor {
-  display: none;
-}
