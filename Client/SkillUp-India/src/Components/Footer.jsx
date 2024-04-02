@@ -18,7 +18,7 @@ const Footer = () => {
                                 <p>{t('en.Don’t miss any updates of our new updates.!')}</p>
                                 <form action="#" className="f_subscribe_two mailchimp" method="post" noValidate>
                                     <input type="text" name="EMAIL" className="form-control memail" placeholder="Email" />
-                                    <button className="btn btn_get btn_get_two" type="submit">{t('Subscribe')}</button>
+                                    <button className="btn btn_get btn_get_two" type="submit">{t('en.Subscribe')}</button>
                                     <p className="mchimp-errmessage" style={{ display: 'none' }}></p>
                                     <p className="mchimp-sucmessage" style={{ display: 'none' }}></p>
                                 </form>
