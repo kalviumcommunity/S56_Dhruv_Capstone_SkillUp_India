@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import Nav from '../Components/Nav'
+import Nav from '../Components/Nav';
 import Lottie from 'react-lottie';
 import animationData from '../assets/animation.json';
 import animation1 from '../assets/animation1.json';
-import './Home.css'
+import './Home.css';
 import './Home.scss';
 import Footer from '../Components/Footer';
 import anime from '../assets/animation.gif';
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   useEffect(() => {
@@ -17,6 +18,8 @@ const Home = () => {
       document.body.style.setProperty('--y', e.clientY + 'px');
     });
   }, []);
+
+  const { t } = useTranslation();
 
   const defaultOptions = {
     loop: true,
@@ -32,17 +35,12 @@ const Home = () => {
       <Nav />
       <div className='main'>
         <div className='hero-text'>
-          <h1 className='title-1'>Unlock Your Skills, </h1>
-          <h2 className='title-2'>Empower Your Future</h2>
+          <h1 className='title-1'>{t('title-1')}</h1>
+          <h2 className='title-2'>{t('title-2')}</h2>
         </div>
         <div className='cta'>
-        <button class="button-56" role="button">Get Started Now !!</button>
-          </div>
-        {/* <Lottie 
-            options={defaultOptions}
-            height={400}
-            width={400}
-          /> */}
+          <button className="button-56" role="button">{t('button-56')}</button>
+        </div>
         <div className='animation-1'>
           <Lottie
             options={defaultOptions}
