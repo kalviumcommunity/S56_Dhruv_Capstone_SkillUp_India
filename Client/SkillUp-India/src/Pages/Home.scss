@@ -30,6 +30,7 @@ html {
     radial-gradient(200px at var(--x) var(--y), rgba(#0400ff, 1), rgba(25, 0, 255, 0.2));
   background-repeat: repeat, no-repeat;
   background-size: 0.7rem 0.7rem, auto;
+  border-bottom: 5px solid black;
 }
 .cursor {
   position: absolute;
@@ -44,5 +45,6 @@ html {
   z-index: 10;
   pointer-events: none;
   box-shadow: 0 0 10px 0 rgba(0, 0, 255, 0.1)
+
 }
 

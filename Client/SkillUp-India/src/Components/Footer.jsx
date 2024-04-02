@@ -1,11 +1,12 @@
 import React from 'react';
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
+import { useTranslation } from 'react-i18next'; // Importing useTranslation hook
+import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
-import "./Footer.css"
+import "./Footer.css";
 
 const Footer = () => {
+    const { t } = useTranslation(); // Using useTranslation hook to access translations
+
     return (
         <footer className="new_footer_area bg_color">
             <div className="new_footer_top">
@@ -13,11 +14,11 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-lg-3 col-md-6">
                             <div className="f_widget company_widget">
-                                <h3 className="f-title-1 f_600 t_color f_size_18">Get in Touch</h3>
-                                <p>Don’t miss any updates of our new updates.!</p>
+                                <h3 className="f-title-1 f_600 t_color f_size_18">{t('en.Get in Touch')}</h3>
+                                <p>{t('en.Don’t miss any updates of our new updates.!')}</p>
                                 <form action="#" className="f_subscribe_two mailchimp" method="post" noValidate>
                                     <input type="text" name="EMAIL" className="form-control memail" placeholder="Email" />
-                                    <button className="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                                    <button className="btn btn_get btn_get_two" type="submit">{t('en.Subscribe')}</button>
                                     <p className="mchimp-errmessage" style={{ display: 'none' }}></p>
                                     <p className="mchimp-sucmessage" style={{ display: 'none' }}></p>
                                 </form>
@@ -25,33 +26,32 @@ const Footer = () => {
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="f_widget about-widget pl_70">
-                                <h3 className="f-title-2 f_800 t_color f_size_18">Company</h3>
+                                <h3 className="f-title-2 f_800 t_color f_size_18">{t('Company')}</h3>
                                 <ul className="list-unstyled f_list">
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Press</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Android App</a></li>
-                                    <li><a href="#">iOS App</a></li>
-                                  
+                                    <li><a href="#">{t('en.About')}</a></li>
+                                    <li><a href="#">{t('en.Press')}</a></li>
+                                    <li><a href="#">{t('en.Blog')}</a></li>
+                                    <li><a href="#">{t('en.Android App')}</a></li>
+                                    <li><a href="#">{t('en.iOS App')}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="f_widget about-widget pl_70">
-                                <h3 className="f-title-3 f_600 t_color f_size_18">Help</h3>
+                                <h3 className="f-title-3 f_600 t_color f_size_18">{t('en.Help')}</h3>
                                 <ul className="list-unstyled f_list">
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Term &amp; conditions</a></li>
-                                    <li><a href="#">Reporting</a></li>
-                                    <li><a href="#">Documentation</a></li>
-                                    <li><a href="#">Support Policy</a></li>
-                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">{t('en.FAQ')}</a></li>
+                                    <li><a href="#">{t('en.Term & conditions')}</a></li>
+                                    <li><a href="#">{t('en.Reporting')}</a></li>
+                                    <li><a href="#">{t('en.Documentation')}</a></li>
+                                    <li><a href="#">{t('en.Support Policy')}</a></li>
+                                    <li><a href="#">{t('en.Privacy')}</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6">
                             <div className="f_widget social-widget pl_70">
-                                <h3 className="f-title-4 f_600 t_color f_size_18">Follow us on : </h3>
+                                <h3 className="f-title-4 f_600 t_color f_size_18">{t('Follow')}</h3>
                                 <div className="f_social_icon">
                                     <a href="#" className="fab fa-facebook"> <FaFacebook/></a>
                                     <a href="#" className="fab fa-twitter"><RiTwitterXFill /></a>
@@ -71,10 +71,10 @@ const Footer = () => {
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-lg-6 col-sm-7">
-                            <p className="mb-0 f_400">© SkillUp India Inc.. 2024 All rights reserved.</p>
+                            <p className="mb-0 f_400">{t('en.© SkillUp India Inc.. 2024 All rights reserved.')}</p>
                         </div>
                         <div className="col-lg-6 col-sm-5 text-right">
-                            <p>Made  <i className="icon_heart"></i> in 🇮🇳 </p>
+                            <p>{t('en.Made in 🇮🇳')}</p>
                         </div>
                     </div>
                 </div>
