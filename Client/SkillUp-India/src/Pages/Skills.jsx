@@ -10,14 +10,6 @@ import "./Skills.css"
 
 
 const Skills = () => {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animation2,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
   const Options = {
     loop: true,
     autoplay: true,
