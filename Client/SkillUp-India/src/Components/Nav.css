@@ -12,7 +12,9 @@
     width: auto;
     margin-left: 0px;
   }
-  
+.nav-link active{
+color: #ff7d2d;
+ }
   nav {
     display: flex;
     justify-content: center;
@@ -35,7 +37,7 @@
     width: 100%;
   }
   
-  nav li a {
+  nav li span {
   
     display: flex;
     width: 100%;
@@ -51,14 +53,14 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
   }
-  
-  nav li a:hover {
+
+  nav li span:hover {
    box-shadow: 
       rgb(0, 0, 0) 3px 3px;
     color: #fff;
   }
   
-  nav li a:after {
+  nav li span:after {
     content: "";
     height: 100%;
     left: 0;
@@ -70,20 +72,20 @@
     z-index: -1;
   }
   
-  nav li a:hover:after {
+  nav li span:hover:after {
     width: 100%;
   }
   
-  nav li:first-child a::after {
+  .f span::after {
     background: #ff7d2d ; 
   }
   
-  nav li:nth-child(2) a::after {
-    background: rgb(55, 109, 255);
+  .s span::after {
+    background: #0040F0;
   }
   
   
-  nav li:nth-child(3) a::after {
+  .t span::after {
     background: #17d22a;
   }
   .ln-logo{
@@ -94,6 +96,7 @@
   }
   .ln-logo:hover{
     color: grey;
+    cursor: pointer;
   }
   .css-art2ul-ValueContainer2{
  /* position: absolute; */
@@ -116,6 +119,9 @@
 
   }
   .Signin:hover{
+    color: grey;
+    cursor: pointer;
+    transition: all 0.5s ease;
 
   }
 .button-54 {
@@ -179,6 +185,9 @@
   align-items: center;
   flex-direction: column; */
   font-size: 15px; 
+}
+.active{
+  color: #ff7d2d;
 }
 .css-1dimb5e-singleValue{
   margin-top: -100px;

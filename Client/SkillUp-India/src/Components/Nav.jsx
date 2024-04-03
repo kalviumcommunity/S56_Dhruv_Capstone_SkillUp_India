@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GrLanguage } from "react-icons/gr";
 import Select from 'react-select';
-import { components } from 'react-select';
 import './Nav.css';
 import SignupForm from '../Pages/SignUp'; 
 import SigninForm from '../Pages/Signin'; 
 import { useTranslation } from 'react-i18next';
-import { Link } from "react-router-dom";
-import Skills from '../Pages/Skills';
+import { NavLink, useLocation } from "react-router-dom";
 
 const Nav = () => {
   const { t, i18n } = useTranslation();
   const [showSelect, setShowSelect] = useState(false);
   const [showModal, setModal] = useState(false);
   const [isSignIn, setSignIn] = useState(false);
+  const [activeLink, setActiveLink] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/Skills") {
+      setActiveLink(1);
+    } else {
+      setActiveLink(null);
+    }
+  }, [location.pathname]);
 
   const toggleModal = () => {
     setModal(!showModal);
@@ -38,7 +46,7 @@ const Nav = () => {
     { value: 'ml', label: 'Malayalam' },
   ];
 
-  const DropdownIndicator = (props) => {
+  const DropdownIndicator = () => {
     return (
       <div onClick={() => setShowSelect(!showSelect)}>
         <GrLanguage size={40} className='ln-logo' />
@@ -65,9 +73,17 @@ const Nav = () => {
       </div>
       <nav>
         <ul>
-          <Link style={{textDecoration:"none",}} to="./Skills" ><li><a href="#" className='nav-link'>{t('Skills')}</a></li></Link>
-          <li><a href="#" className='nav-link'>{t('Community')}</a></li>
-          <li><a href="#" className='nav-link'>{t('About')}</a></li>
+          <NavLink to="/Skills" onClick={() => setActiveLink(1)} style={{ textDecoration: "none" }}>
+            <li className='f'>
+              <span className={activeLink === 1 ? 'active' : 'nav-link'}>{t('Skills')}</span>
+            </li>
+          </NavLink>
+          <NavLink to="/Community" style={{ textDecoration: "none" }}>
+            <li className='s'><span className='nav-link'>{t('Community')}</span></li>
+          </NavLink>
+          <NavLink to="/About" style={{ textDecoration: "none" }}>
+            <li className='t'><span className='nav-link'>{t('About')}</span></li>
+          </NavLink>
         </ul>
       </nav>
       <div className='language-selector'>
