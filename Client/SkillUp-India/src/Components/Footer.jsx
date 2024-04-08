@@ -29,7 +29,6 @@ const Footer = () => {
                                 <h3 className="f-title-2 f_800 t_color f_size_18">{t('Company')}</h3>
                                 <ul className="list-unstyled f_list">
                                     <li><a href="#">{t('en.About')}</a></li>
-                                    <li><a href="#">{t('en.Press')}</a></li>
                                     <li><a href="#">{t('en.Blog')}</a></li>
                                     <li><a href="#">{t('en.Android App')}</a></li>
                                     <li><a href="#">{t('en.iOS App')}</a></li>
@@ -43,7 +42,6 @@ const Footer = () => {
                                     <li><a href="#">{t('en.FAQ')}</a></li>
                                     <li><a href="#">{t('en.Term & conditions')}</a></li>
                                     <li><a href="#">{t('en.Reporting')}</a></li>
-                                    <li><a href="#">{t('en.Documentation')}</a></li>
                                     <li><a href="#">{t('en.Support Policy')}</a></li>
                                     <li><a href="#">{t('en.Privacy')}</a></li>
                                 </ul>

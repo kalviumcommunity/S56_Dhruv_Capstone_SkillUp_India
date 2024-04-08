@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.css'; 
 
-function SigninForm() {
+function SignIn() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,7 +17,7 @@ function SigninForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log('Signin form submitted:', formData);
+    console.log('SignIn form submitted:', formData);
   };
 
   return (
@@ -62,4 +62,4 @@ function SigninForm() {
   );
 }
 
-export default SigninForm;
+export default SignIn;
