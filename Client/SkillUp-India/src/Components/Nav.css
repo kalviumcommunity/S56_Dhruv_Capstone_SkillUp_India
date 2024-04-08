@@ -1,201 +1,198 @@
 .Nav-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 2px solid #444;
-    height:  90px;  
-    cursor: auto;
-  }
-  
-  .logo {
-    height: 110px;
-    width: auto;
-    margin-left: 0px;
-  }
-.nav-link active{
-color: #ff7d2d;
- }
-  nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 110px;
-    clear: both;
-    width: 100%;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 70px;
-    width: 70%;
-
-    justify-content: space-around;
-  }
-  
-  nav li {
-    float: none;
-    width: 100%;
-  }
-  
-  nav li span {
-
-    display: flex;
-    width: 100%;
-    padding: 25px;
-    position: relative;
-    z-index: 2;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 500;
-    white-space: nowrap;
-    color: #444;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-  }
-
-  nav li span:hover {
-   box-shadow: 
-      rgb(0, 0, 0) 4px 4px;
-    color: #fff;
-
-  }
-  
-  nav li span:after {
-    content: "";
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 0;
-    position: absolute;
-    transition: all 0.3s ease 0s;
-    -webkit-transition: all 0.3s ease 0s;
-    z-index: -1;
-  }
-  
-  nav li span:hover:after {
-    width: 100%;
-  }
-  
-  .f span::after {
-    background: #ff7d2d ; 
-  }
-  
-  .s span::after {
-    background: #0040F0;
-  }
-  
-  
-  .t span::after {
-    background: #17d22a;
-  }
-  .ln-logo{
-    margin-top: -20px;
-   margin-left: 110px;
-   transition: all 0.5s ease;
-     z-index: 1; 
-  }
-  .ln-logo:hover{
-    color: grey;
-    cursor: pointer;
-  }
-  .css-art2ul-ValueContainer2{
- /* position: absolute; */
- top: 200px;
- width: 200px;
-  }
-  .signin-signup{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    gap: 30px;
-    margin-right: 30px;
-  }
-  .Signin{
-    font-size: 22px;
-    font-weight: 500;
-    color: #444;
-    white-space: nowrap;
-
-  }
-  .Signin:hover{
-    color: grey;
-    cursor: pointer;
-    transition: all 0.5s ease;
-
-  }
-.button {
-    width: auto;
-    white-space: nowrap;
-  font-family: "Open Sans", sans-serif;
-  font-size: 25px;
-  letter-spacing: 2px;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
-}
-.logo{
-  font-size: 50px;
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  z-index: 1000; 
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 2px solid #444;
+  height:  90px;  
+  cursor: auto;
+}
+
+/*   .logo {
+  height: 110px;
+  width: auto;
+  margin-left: 0px;
+
+}
+.nav-link active{
+color: #ff7d2d;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 110px;
+  clear: both;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 70px;
+  width: 70%;
+  justify-content: space-around;
+}
+
+nav li {
+  float: none;
+  width: 100%;
+}
+
+nav li span {
+
+  display: flex;
+  width: 100%;
+  padding: 25px;
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #444;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+nav li span:hover {
+ box-shadow: 
+    rgb(0, 0, 0) 4px 4px;
+  color: #fff;
+}
+
+nav li span:after {
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  z-index: -1;
+}
+
+nav li span:hover:after {
+  width: 100%;
+}
+
+.f span::after {
+  background: #ff7d2d ; 
+}
+
+.s span::after {
+  background: #0040F0;
+}
+
+
+.t span::after {
+  background: #17d22a;
+}
+.ln-logo{
+  margin-top: -20px;
+ margin-left: 110px;
+ transition: all 0.5s ease;
+   z-index: 1; 
+}
+.ln-logo:hover{
+  color: grey;
+  cursor: pointer;
+}
+.css-art2ul-ValueContainer2{
+/* position: absolute; */
+
+.signin-signup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  gap: 30px;
+  margin-right: 30px;
+}
+.Signin{
+  font-size: 22px;
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+
+}
+.Signin:hover{
+  color: grey;
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+}
+.button-54 {
+  width: auto;
+  white-space: nowrap;
+font-family: "Open Sans", sans-serif;
+font-size: 25px;
+letter-spacing: 2px;
+text-decoration: none;
+color: #000;
+cursor: pointer;
+border: 3px solid;
+padding: 0.25em 0.5em;
+box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+position: relative;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.button-54:active {
+box-shadow: 0px 0px 0px 0px;
+top: 5px;
+left: 5px;
+}
+.logo{
+font-size: 50px;
+}
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5); 
+z-index: 1000; 
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .modal-content {
 
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .close-button {
-  position: absolute;
-  top: 90px;
-  left: 440px;
- width: 30px;
-  height: 30px;
-  cursor: pointer;
+position: absolute;
+top: 90px;
+left: 440px;
+width: 30px;
+height: 30px;
+cursor: pointer;
 }
 .language-selector{
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; */
-  font-size: 15px; 
+/* display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column; */
+font-size: 15px; 
 }
 .active{
-  color: #ff7d2d;
+color: #ff7d2d;
 }
 .css-1dimb5e-singleValue{
-  margin-top: -100px;
+margin-top: -100px;
 }
 @media (min-width: 768px) {
-  .button {
-    padding: 0.25em 0.75em;
-  }
+.button-54 {
+  padding: 0.25em 0.75em;
+}
 }
