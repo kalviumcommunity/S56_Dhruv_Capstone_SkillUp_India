@@ -29,7 +29,6 @@ async function connectToDB() {
     process.exit(1);
   }
 }
-
 app.get('/skills', async (req, res) => {
   try {
     const skills = await Skill.find();
@@ -53,6 +52,8 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
+
 });
+
 
