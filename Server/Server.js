@@ -2,12 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Skill = require('./Models/Skills');
 require('dotenv').config();
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
-
 async function connectToDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -28,6 +27,7 @@ app.get('/skills', async (req, res) => {
 });
 
 connectToDB();
+
 app.get('/', async (req, res) => {
   try {
     res.send('<h1>Hello, Future World!</h1>');
@@ -35,8 +35,12 @@ app.get('/', async (req, res) => {
     console.error('Error handling request:', error);
     res.status(500).send('Internal Server Error');
   }
+
 });
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
-})
+
+});
+
+
