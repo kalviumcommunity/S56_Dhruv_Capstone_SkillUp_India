@@ -4,10 +4,12 @@ const SkillSchema = new mongoose.Schema({
   skillsName: {
     type: String,
     required: true,
+    index: true, 
   },
   category: {
     type: String,
     required: true,
+    index: true, 
   },
   image: {
     type: String,

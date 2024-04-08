@@ -1,12 +1,24 @@
+// Server/Server.js
+
 const express = require('express');
 const mongoose = require('mongoose');
+const { validationResult } = require('express-validator'); // Importing express-validator for input validation
 const Skill = require('./Models/Skills');
 require('dotenv').config();
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
+
+// Middleware for input validation
+app.use((req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+});
 
 async function connectToDB() {
   try {
@@ -17,6 +29,7 @@ async function connectToDB() {
     process.exit(1);
   }
 }
+
 app.get('/skills', async (req, res) => {
   try {
     const skills = await Skill.find();
@@ -28,6 +41,7 @@ app.get('/skills', async (req, res) => {
 });
 
 connectToDB();
+
 app.get('/', async (req, res) => {
   try {
     res.send('<h1>Hello, Future World!</h1>');
@@ -38,5 +52,5 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-})
+  console.log(`Server is running on http://localhost:${port}`);
+});
