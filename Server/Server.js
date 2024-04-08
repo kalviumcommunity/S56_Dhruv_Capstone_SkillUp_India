@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const Skill = require('./Models/Skills');
 require('dotenv').config();
 const port = process.env.PORT || 3000; 
 const app = express();
@@ -16,6 +17,16 @@ async function connectToDB() {
     process.exit(1);
   }
 }
+app.get('/skills', async (req, res) => {
+  try {
+    const skills = await Skill.find();
+    res.json(skills);
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 connectToDB();
 app.get('/', async (req, res) => {
   try {
@@ -28,4 +39,4 @@ app.get('/', async (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
-});
+})

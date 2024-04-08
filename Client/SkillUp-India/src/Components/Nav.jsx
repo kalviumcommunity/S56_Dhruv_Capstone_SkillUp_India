@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
+import { FiAlertCircle } from "react-icons/fi";
 import { GrLanguage } from "react-icons/gr";
 import Select from 'react-select';
 import './Nav.css';
-import SignupForm from '../Pages/SignUp'; 
-import SigninForm from '../Pages/Signin'; 
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from "react-router-dom";
-
+import SignIn from "../Pages/SignIn"
+import SignUp from "../Pages/SignUp"
 const Nav = () => {
   const { t, i18n } = useTranslation();
   const [showSelect, setShowSelect] = useState(false);
@@ -27,14 +28,11 @@ const Nav = () => {
     setModal(!showModal);
   };
 
-  const SignIn = () => {
-    setSignIn(!isSignIn);
-  };
-
   const changeLanguage = (selectedOption) => {
     i18n.changeLanguage(selectedOption.value);
     setShowSelect(false);
   };
+
   const options = [
     { value: 'en', label: 'English' },
     { value: 'hi', label: 'Hindi' },
@@ -97,27 +95,40 @@ const Nav = () => {
         />
       </div>
       <div className='signin-signup'>
-        <p className='Signin' onClick={SignIn}>{t('Sign')}</p>  
-        <button onClick={toggleModal} className="button-54" role="button">{t('SignUp')}</button>
+        <p className='Signin' onClick={() => setSignIn(true)}>{t('Sign')}</p>  
+        <button onClick={toggleModal} className="button" role="button">{t('SignUp')}</button>
       </div>
 
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <SignupForm /> 
-            <button onClick={toggleModal} className="close-button">X</button>
-          </div>
-        </div>
-      )}
-
-      {isSignIn && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <SigninForm /> 
-            <button onClick={SignIn} className="close-button">X</button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {(showModal || isSignIn) && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="modal-overlay"
+            onClick={() => {
+              setModal(false);
+              setSignIn(false);
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0, rotate: "12.5deg" }}
+              animate={{ scale: 1, rotate: "0deg" }}
+              exit={{ scale: 0, rotate: "0deg" }}
+              onClick={(e) => e.stopPropagation()}
+              className="modal-content bg-gradient-to-br from-violet-600 to-indigo-600 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
+            >
+              <div className="relative z-10">
+                <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-indigo-600 grid place-items-center mx-auto">
+                </div>
+                <div className="flex gap-2">
+                  {isSignIn ? <SignIn /> : <SignUp />}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
