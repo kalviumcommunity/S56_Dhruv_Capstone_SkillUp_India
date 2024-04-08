@@ -2,7 +2,7 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const { validationResult } = require('express-validator'); // Importing express-validator for input validation
+// const { validationResult } = require('express-validator'); // Importing express-validator for input validation
 const Skill = require('./Models/Skills');
 require('dotenv').config();
 const port = process.env.PORT || 3000;
@@ -12,13 +12,13 @@ const app = express();
 app.use(express.json());
 
 // Middleware for input validation
-app.use((req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return res.status(400).json({ errors: errors.array() });
+//   }
+//   next();
+// });
 
 async function connectToDB() {
   try {
