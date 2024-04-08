@@ -1,8 +1,6 @@
-// Server/Server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
-// const { validationResult } = require('express-validator'); // Importing express-validator for input validation
+const cors = require('cors'); // Import the cors package
 const Skill = require('./Models/Skills');
 require('dotenv').config();
 const port = process.env.PORT || 3000;
@@ -11,14 +9,8 @@ const app = express();
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
-// Middleware for input validation
-// app.use((req, res, next) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   next();
-// });
+// Enable CORS for all origins
+app.use(cors());
 
 async function connectToDB() {
   try {
@@ -43,17 +35,13 @@ connectToDB();
 
 app.get('/', async (req, res) => {
   try {
-    res.send('<h1>Hello, Future World!</h1>');
+    res.send('Hello, Future World!');
   } catch (error) {
     console.error('Error handling request:', error);
     res.status(500).send('Internal Server Error');
   }
-
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-
+  console.log(`Server is running on http://localhost:${port}`);
 });
-
-

@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../Components/Nav';
 import Lottie from 'react-lottie';
 import animation2 from '../assets/animation2.json';
 import './Skills.css';
 
 const Skills = () => {
-  const [selectedSkills, setSelectedSkills] = useState([]); 
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [skillsData, setSkillsData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/skills')
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => setSkillsData(data))
+      .catch((error) => console.error('Error fetching skills:', error));
+  }, []);
+  
+
   const toggleSkill = (skill) => {
     setSelectedSkills((prevSelectedSkills) =>
       prevSelectedSkills.includes(skill)
@@ -38,14 +51,17 @@ const Skills = () => {
         </div>
       </div>
       <p className="s-t-1"> 🎓 {selectedSkills.length > 0 ? `Showing ${selectedSkills.length} skills for people who like…` : 'What kind of skills are you interested in?'}</p>
-      <div className="button-container">
-        {['Being creative', 'Complex problems', 'Craftsmanship', 'Fixing things', 'Helping people', 'Making things', 'Using computers', 'Using tools', 'Working as a team'].map((skill) => (
-          <div key={skill} className="button-wrapper">
-            <button className={`button-54 ${isSkillSelected(skill) ? 'selected' : ''}`} onClick={() => toggleSkill(skill)}>
-              {skill}
+      <div className="grid-container">
+        {skillsData.map((skill) => (
+          <div key={skill._id} className="grid-item">
+            <img src={skill.image} alt={skill.skillsName} />
+            <h3>{skill.skillsName}</h3>
+            <p>{skill.category}</p>
+            <button className={`button-54 ${isSkillSelected(skill.skillsName) ? 'selected' : ''}`} onClick={() => toggleSkill(skill.skillsName)}>
+              {isSkillSelected(skill.skillsName) ? 'Selected' : 'Select'}
             </button>
-            {isSkillSelected(skill) && (
-              <button className="delete" onClick={() => toggleSkill(skill)}>
+            {isSkillSelected(skill.skillsName) && (
+              <button className="delete" onClick={() => toggleSkill(skill.skillsName)}>
                 X
               </button>
             )}
