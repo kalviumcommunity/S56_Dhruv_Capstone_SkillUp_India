@@ -6,7 +6,7 @@ import './Nav.css';
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from "react-router-dom";
-import SignIn from "../Pages/SignIn.jsx"
+import SignIn from "../Pages/SignIn"
 import SignUp from "../Pages/SignUp"
 const Nav = () => {
   const { t, i18n } = useTranslation();
