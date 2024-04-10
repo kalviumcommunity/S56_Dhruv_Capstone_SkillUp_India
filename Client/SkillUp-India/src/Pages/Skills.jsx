@@ -10,7 +10,7 @@ const Skills = () => {
   const [skillsData, setSkillsData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/skills') 
+    axios.get('https://skillup-india.onrender.com/skills') 
       .then((response) => {
         console.log(response);
         return response.data; 
