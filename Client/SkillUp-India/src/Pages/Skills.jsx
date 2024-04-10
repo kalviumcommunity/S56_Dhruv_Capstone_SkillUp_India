@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; 
 import Nav from '../Components/Nav';
 import Lottie from 'react-lottie';
 import animation2 from '../assets/animation2.json';
 import './Skills.css';
 
 const Skills = () => {
-  const [selectedSkills, setSelectedSkills] = useState([]); 
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [skillsData, setSkillsData] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://skillup-india.onrender.com/skills') 
+      .then((response) => {
+        console.log(response);
+        return response.data; 
+      })
+      .then((data) => setSkillsData(data))
+      .catch((error) => console.error('Error fetching skills:', error));
+  }, []);
+
   const toggleSkill = (skill) => {
     setSelectedSkills((prevSelectedSkills) =>
       prevSelectedSkills.includes(skill)
@@ -49,6 +62,15 @@ const Skills = () => {
                 X
               </button>
             )}
+          </div>
+        ))}
+      </div>
+      <div className="grid-container">
+        {skillsData.map((skill) => (
+          <div key={skill._id} className="grid-item">
+            <img src={skill.image} alt={skill.skillsName} />
+            <h3>{skill.skillsName}</h3>
+            <p>{skill.category}</p>
           </div>
         ))}
       </div>

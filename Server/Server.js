@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Import the cors package
 const Skill = require('./Models/Skills');
 require('dotenv').config();
 const port = process.env.PORT || 3000;
@@ -7,6 +8,16 @@ const app = express();
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
+
+// Enable CORS for all origins
+try {
+  app.use(cors());
+} catch (error) {
+  console.error('Error setting up CORS middleware:', error);
+  process.exit(1);
+}
+
+
 async function connectToDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -30,17 +41,13 @@ connectToDB();
 
 app.get('/', async (req, res) => {
   try {
-    res.send('<h1>Hello, Future World!</h1>');
+    res.send('Hello, Future World!');
   } catch (error) {
     console.error('Error handling request:', error);
     res.status(500).send('Internal Server Error');
   }
-
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-
+  console.log(`Server is running on http://localhost:${port}`);
 });
-
-
