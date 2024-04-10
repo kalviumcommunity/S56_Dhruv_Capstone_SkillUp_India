@@ -10,7 +10,13 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS for all origins
-app.use(cors());
+try {
+  app.use(cors());
+} catch (error) {
+  console.error('Error setting up CORS middleware:', error);
+  process.exit(1);
+}
+
 
 async function connectToDB() {
   try {
