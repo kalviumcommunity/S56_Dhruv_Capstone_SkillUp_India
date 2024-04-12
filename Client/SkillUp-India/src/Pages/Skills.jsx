@@ -47,7 +47,7 @@ const Skills = () => {
         <div className="hero-text">
           <h2 className="skills">Skills</h2>
           <p className="h-2">Skills create opportunities and connect societies. They are the foundation of economic progress.</p>
-          <SearchBar />
+         <div className='search'><SearchBar/></div> 
         </div>
         <div className="animation-2">
           <Lottie options={Options} height={600} width={600} />

@@ -14,18 +14,18 @@ const SearchBar = () => {
 
   useEffect(() => {
     const searchBar = document.querySelector(".finder__input");
-
+  
     const getRandomDelayBetween = (min, max) =>
       Math.floor(Math.random() * (max - min + 1) + min);
-
+  
     let isMounted = true;
-
+  
     const setPlaceholder = (inputNode, placeholder) => {
       if (isMounted) {
         inputNode.setAttribute("placeholder", placeholder);
       }
     };
-
+  
     const animateLetters = (
       currentLetters,
       remainingLetters,
@@ -38,9 +38,9 @@ const SearchBar = () => {
           onAnimationEnd(currentLetters.join(""), inputNode)
         );
       }
-
+  
       currentLetters.push(remainingLetters.shift());
-
+  
       setTimeout(() => {
         setPlaceholder(inputNode, currentLetters.join(""));
         animateLetters(
@@ -51,11 +51,11 @@ const SearchBar = () => {
         );
       }, getRandomDelayBetween(30, 90));
     };
-
+  
     const animatePlaceholder = (inputNode, placeholder, onAnimationEnd) => {
       animateLetters([], placeholder.split(""), inputNode, onAnimationEnd);
     };
-
+  
     const onAnimationEnd = (placeholder, inputNode) => {
       setTimeout(() => {
         if (isMounted) {
@@ -64,20 +64,20 @@ const SearchBar = () => {
             newPlaceholder =
               PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)];
           } while (placeholder === newPlaceholder);
-
+  
           animatePlaceholder(inputNode, newPlaceholder, onAnimationEnd);
         }
       }, 1000);
     };
-
+  
     animatePlaceholder(searchBar, PLACEHOLDERS[0], onAnimationEnd);
-
+  
     return () => {
       isMounted = false;
       searchBar.removeAttribute("placeholder");
     };
   }, []);
-
+  
   const handleFocus = () => {
     setIsActive(true);
   };

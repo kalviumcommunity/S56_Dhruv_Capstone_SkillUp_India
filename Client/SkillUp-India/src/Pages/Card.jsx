@@ -74,7 +74,7 @@ const TiltCard = ({ image, skillsName, category }) => {
         className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg"
       >
         <div className="card"> 
-         <img className="img" src={image} alt={skillsName} />
+         <img className="img" src={image} alt={image} />
         <h3 className="name">{skillsName}</h3>
         <p className="category">{category}</p>
 
