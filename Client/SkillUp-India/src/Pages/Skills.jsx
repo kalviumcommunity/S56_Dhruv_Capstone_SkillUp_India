@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import Nav from '../Components/Nav';
 import Lottie from 'react-lottie';
 import animation2 from '../assets/animation2.json';
+import SearchBar from '../Components/Search';
 import './Skills.css';
-
+import Card from './Card'; 
 const Skills = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [skillsData, setSkillsData] = useState([]);
@@ -45,6 +47,7 @@ const Skills = () => {
         <div className="hero-text">
           <h2 className="skills">Skills</h2>
           <p className="h-2">Skills create opportunities and connect societies. They are the foundation of economic progress.</p>
+          <SearchBar />
         </div>
         <div className="animation-2">
           <Lottie options={Options} height={600} width={600} />
@@ -67,11 +70,12 @@ const Skills = () => {
       </div>
       <div className="grid-container">
         {skillsData.map((skill) => (
-          <div key={skill._id} className="grid-item">
-            <img src={skill.image} alt={skill.skillsName} />
-            <h3>{skill.skillsName}</h3>
-            <p>{skill.category}</p>
-          </div>
+          <Card
+            key={skill._id}
+            image={skill.image}
+            skillsName={skill.skillsName}
+            category={skill.category}
+          />
         ))}
       </div>
     </>
