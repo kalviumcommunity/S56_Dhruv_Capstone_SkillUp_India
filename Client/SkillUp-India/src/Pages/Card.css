@@ -1,0 +1,23 @@
+.name{
+ font-size: 25px;
+ text-wrap: wrap;
+position: relative;
+top: 130px;
+left: 20px;
+    
+}
+.card{
+    border: 3px solid black;
+    height: 300px;
+    width: 328px;
+}
+.category{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    margin-top: 160px;
+    margin-left: 20px;
+}
+.img{
+    display: none;
+}
