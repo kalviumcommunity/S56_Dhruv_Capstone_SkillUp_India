@@ -18,7 +18,7 @@ const Skills = () => {
   const skillsPerPage = 12; // Number of skills to display per page
   
   useEffect(() => {
-    axios.get('https://skillup-india.onrender.com/')
+    axios.get('https://skillup-india.onrender.com/skills')
       .then((response) => {
         console.log(response);
         return response.data;
