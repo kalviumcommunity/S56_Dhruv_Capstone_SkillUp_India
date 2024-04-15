@@ -1,0 +1,29 @@
+.breadcrumbs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: transparent !important;
+}
+.MuiTypography-root{
+    background-color: transparent  !important;
+    font-size: 20px !important;
+color: rgb(138, 138, 138) !important;
+
+}
+.MuiSvgIcon-root{
+    font-size: 30px !important;
+} 
+.MuiBreadcrumbs-ol {
+    position: absolute;
+    top: 110px;
+    left:0.4rem;
+        background-color: transparent  !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+.css-ahj2mt-MuiTypography-root{
+
+}

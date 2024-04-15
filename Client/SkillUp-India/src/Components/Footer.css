@@ -177,24 +177,29 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 100px;
 }
+.container{
+    box-shadow: none !important;
+    margin-left: -100px;
+    
+}
 .f-title-2{
 position: absolute;
 font-size: 30px;
 top: 120px;
-right: 690px;
+right: 790px;
 }
 .f-title-3{
 position: absolute;
 font-size: 30px;
 top: 120px;
-right: 500px;
+right: 600px;
 
 }
 .f-title-4{
     position: absolute;
 font-size: 30px;
 top: 150px;
-right: 100px;
+right: 200px;
 
 }
 

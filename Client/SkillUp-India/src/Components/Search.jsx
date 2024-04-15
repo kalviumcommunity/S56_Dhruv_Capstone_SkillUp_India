@@ -6,10 +6,10 @@ const SearchBar = () => {
   const [isActive, setIsActive] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const PLACEHOLDERS = [
-    "Search for Skills",
-    "Learn a New Skill",
-    "Explore Skills",
-    "Find your Skills",
+    "Search for Skills !!",
+    "Learn a New Skill...",
+    "Explore Skills...",
+    "Find your Skills.",
   ];
 
   useEffect(() => {
