@@ -31,7 +31,7 @@ const Footer = () => {
                                     <li><a href="#">{t('en.About')}</a></li>
                                     <li><a href="#">{t('en.Blog')}</a></li>
                                     <li><a href="#">{t('en.Android App')}</a></li>
-                                    <li><a href="#">{t('en.iOS App')}</a></li>
+                                    <li><a href="#">iOS App</a></li>
                                 </ul>
                             </div>
                         </div>
