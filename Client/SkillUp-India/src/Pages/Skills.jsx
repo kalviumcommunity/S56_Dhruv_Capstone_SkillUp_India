@@ -16,15 +16,19 @@ const Skills = () => {
   const [skillsData, setSkillsData] = useState([]);
   const [page, setPage] = useState(1); // Tracking current page number
   const skillsPerPage = 12; // Number of skills to display per page
-
+  
   useEffect(() => {
-    axios.get('http://localhost:3000/skills') 
+    axios.get('http://localhost:3000/skills')
       .then((response) => {
         console.log(response);
-        return response.data; 
+        return response.data;
       })
       .then((data) => setSkillsData(data))
-      .catch((error) => console.error('Error fetching skills:', error));
+      .catch((error) => {
+        console.error('Error fetching skills:', error);
+        alert('Failed to fetch skills. Please try again later.')
+         
+      });
   }, []);
 
   const toggleSkill = (skill) => {
