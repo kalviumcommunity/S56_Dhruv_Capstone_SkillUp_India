@@ -17,7 +17,7 @@
 We believe in fostering a supportive learning environment. Stay connected with us for updates, announcements, and op
 portunities to connect with fellow learners:
 
-* Website (link to our website): coming soon....
+* Website:- [link](https://skillupindia.netlify.app/)
 * Social Media Links (e.g., Twitter, Facebook): coming soon....
 
 **Tech Stack:**
