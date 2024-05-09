@@ -51,7 +51,7 @@
   align-items: center;
   color: hsl(303, 71%, 47%);
   top: -40px;
-  left: 130px;
+  left: 125px;
 }
 .roller .rolltext {
   position: absolute;
@@ -95,7 +95,6 @@
 t-5{
   color: rgb(186, 16, 186) ;
 }
-
 .button-56 {
     width: 250px;
     height: 70px;
@@ -157,13 +156,13 @@ overflow: hidden;
 }
 
 .first div {
-  color:orange;
+  color:#ffa500;
 }
 .second div {
   color:#0040F0;
 }
 .third div {
-  color:rgb(16, 192, 16);
+  color:#10c010;
 }
 
 @keyframes text-animation {
