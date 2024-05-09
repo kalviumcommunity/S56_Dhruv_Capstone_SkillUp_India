@@ -16,6 +16,8 @@ const SkillSchema = new mongoose.Schema({
     required: true,
   },
 });
+
 let Skills = mongoose.model('Skill', SkillSchema);
 
 module.exports = Skills;
+
