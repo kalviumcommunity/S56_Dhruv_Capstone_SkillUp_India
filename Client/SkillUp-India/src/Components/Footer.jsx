@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // Importing useTranslation hook
+import { NavLink } from "react-router-dom";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import "./Footer.css";
@@ -41,7 +42,7 @@ const Footer = () => {
                                 <ul className="list-unstyled f_list">
                                     <li><a href="#">{t('en.FAQ')}</a></li>
                                     <li><a href="#">{t('en.Term & conditions')}</a></li>
-                                    <li><a href="#">{t('en.Reporting')}</a></li>
+                                    <NavLink to="/contact"> <li><a href="#">Contact US</a></li></NavLink>
                                     <li><a href="#">{t('en.Support Policy')}</a></li>
                                     <li><a href="#">{t('en.Privacy')}</a></li>
                                 </ul>

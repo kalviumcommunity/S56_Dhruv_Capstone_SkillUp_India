@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import Nav from '../Components/Nav';
 import Lottie from 'react-lottie';
 import animationData from '../assets/animation.json';
@@ -7,10 +7,16 @@ import './Home.scss';
 import Footer from '../Components/Footer';
 import anime from '../assets/animation.gif';
 import { useTranslation } from "react-i18next";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 const Home = () => {
   const { t } = useTranslation();
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const tawkMessengerRef = useRef();
+
+  const handleMinimize = () => {
+      tawkMessengerRef.current.minimize();
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,6 +66,10 @@ const Home = () => {
         </div>
         <div className='cursor' />
       </div>
+            <TawkMessengerReact 
+                propertyId="662f3b801ec1082f04e88ab0"
+                widgetId="1hsk80rqb"
+                ref={tawkMessengerRef}/>
       <Footer />
     </>
   )

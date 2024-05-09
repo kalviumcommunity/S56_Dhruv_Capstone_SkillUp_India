@@ -1,0 +1,18 @@
+body {
+  /* Other styles */
+  font-size: 100vmax / 1600 * 100; /* Your responsive font size */
+  margin: 0;
+  padding: 0;
+}
+
+body.user-profile {
+  font-size: initial; /* User profile font size */
+}
+
+.large-font {
+  font-size: initial;
+}
+
+.responsive-font {
+  font-size: 100vmax / 1600 * 100;
+}

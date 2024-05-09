@@ -1,65 +1,77 @@
-import React, { useState } from 'react';
-import './SignUp.css'; 
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import "./SignIn.css"
 
-function SignIn() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+const SignIn = (props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const navigate = useNavigate()
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log('SignIn form submitted:', formData);
-  };
+  const onButtonClick = () => {
+    
+      // Set initial error values to empty
+      setEmailError('')
+      setPasswordError('')
+    
+      // Check if the user has entered both fields correctly
+      if ('' === email) {
+        setEmailError('Please enter your email')
+        return
+      }
+    
+      if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        setEmailError('Please enter a valid email')
+        return
+      }
+    
+      if ('' === password) {
+        setPasswordError('Please enter a password')
+        return
+      }
+    
+      if (password.length < 7) {
+        setPasswordError('The password must be 8 characters or longer')
+        return
+      }
+    
+      // Authentication calls will be made here...
+    
+  }
 
   return (
-    <div className="sign-in-container">
-      <div className="sign-column s1">
-        <div className="sign-column-face s2">
-          <div className="s3">
-            <div className="sign-header-section">
-              <div className="sign-in-title">Sign In Page</div>
-              <div className="sign-in-title-alt">Welcome back to SkillUp India !!</div>
-            </div>
-            <div className="sign-buttons">
-              <a href="#" className="login-w-button">
-                <img width="18" height="18" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo" />
-                <span>Sign in with Google</span>
-              </a>
-              <a href="#" className="login-w-button">
-                <img width="18" height="18" src="https://img.icons8.com/ios-filled/50/mac-os.png" alt="mac-os" />
-                <span>Sign in with Apple</span>
-              </a>
-            </div>
-            <div className="slice-container">
-              <div className="slice-text-c">
-                <div className="slicer"></div>
-                <div className="slice-text">Or with email</div>
-              </div>
-            </div>
-            <form className="input-container" onSubmit={handleSubmit}>
-              <input type="email" required placeholder="Email" name="email" value={formData.email} onChange={handleChange} />
-              <input type="password" required placeholder="Password" name="password" value={formData.password} onChange={handleChange} />
-              <a href="#" className="alt-f">Forgot Password ?</a>
-              <button type="submit">Sign In</button>
-              <div className="alt-f-full">
-                Not a Member yet ?
-                <a href="sign-up.html" className="alt-f">Sign up</a>
-              </div>
-            </form>
-          </div>
-        </div>
+    <div className={'mainContainer'}>
+      <div className={'titleContainer'}>
+        <div>Login</div>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={email}
+          placeholder="Enter your email here"
+          onChange={(ev) => setEmail(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{emailError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input
+          value={password}
+          placeholder="Enter your password here"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        <label className="errorLabel">{passwordError}</label>
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
       </div>
     </div>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn

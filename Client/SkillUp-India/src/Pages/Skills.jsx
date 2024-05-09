@@ -10,6 +10,8 @@ import Footer from "../Components/Footer"
 import './Skills.css';
 import Card from './Card'; 
 import AppBreadcrumbs from '../Components/Breadcrumbs';
+import { Link } from 'react-router-dom';
+import App from '../App'
 
 const Skills = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
@@ -92,14 +94,15 @@ const Skills = () => {
       </div>
       <div className="grid-container">
         {currentSkills.map((skill) => (
-          <Card
-            key={skill._id}
+          <Link  style={{textDecoration:"none"}}key={skill.skillsName} to={`/skill/page`}>
+          <Card 
             image={skill.image}
             skillsName={skill.skillsName}
             category={skill.category}
           />
+        </Link>
         ))}
-      </div>
+      </div> 
       <div className="pagination-container">
   <Pagination spacing={5}
     count={Math.ceil(skillsData.length / skillsPerPage)} 

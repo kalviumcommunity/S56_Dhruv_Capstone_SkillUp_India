@@ -42,7 +42,7 @@
 }
 .roller {
   height: 100px; 
-  line-height: 1.5rem; /* Adjust line height for better spacing */
+  line-height: 1.5rem;
   position: relative;
   overflow: hidden;
   width: 400px;
@@ -51,7 +51,7 @@
   align-items: center;
   color: hsl(303, 71%, 47%);
   top: -40px;
-  left: 130px;
+  left: 125px;
 }
 .roller .rolltext {
   position: absolute;
@@ -156,13 +156,13 @@ overflow: hidden;
 }
 
 .first div {
-  color:orange;
+  color:#ffa500;
 }
 .second div {
   color:#0040F0;
 }
 .third div {
-  color:rgb(16, 192, 16);
+  color:#10c010;
 }
 
 @keyframes text-animation {
