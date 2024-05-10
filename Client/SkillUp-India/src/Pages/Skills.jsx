@@ -10,16 +10,17 @@ import Footer from "../Components/Footer"
 import './Skills.css';
 import Card from './Card'; 
 import AppBreadcrumbs from '../Components/Breadcrumbs';
+import { Link } from 'react-router-dom';
+import App from '../App'
 
 const Skills = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [skillsData, setSkillsData] = useState([]);
   const [page, setPage] = useState(1); // Tracking current page number
   const skillsPerPage = 12; // Number of skills to display per page
-  
-  useEffect(() => {
 
-    axios.get('https://skillup-india.onrender.com/skills')
+  useEffect(() => {
+    axios.get('http://localhost:3000/skills')
       .then((response) => {
         console.log(response);
         return response.data;
@@ -31,6 +32,7 @@ const Skills = () => {
          
       });
   }, []);
+  
 
   const toggleSkill = (skill) => {
     setSelectedSkills((prevSelectedSkills) =>
@@ -92,14 +94,15 @@ const Skills = () => {
       </div>
       <div className="grid-container">
         {currentSkills.map((skill) => (
-          <Card
-            key={skill._id}
+          <Link  style={{textDecoration:"none"}}key={skill.skillsName} to={`/skill/page`}>
+          <Card 
             image={skill.image}
             skillsName={skill.skillsName}
             category={skill.category}
           />
+        </Link>
         ))}
-      </div>
+      </div> 
       <div className="pagination-container">
   <Pagination spacing={5}
     count={Math.ceil(skillsData.length / skillsPerPage)} 

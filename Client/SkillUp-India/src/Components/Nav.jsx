@@ -5,9 +5,11 @@ import Select from 'react-select';
 import './Nav.css';
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
+import {neobrutalism} from "@clerk/themes";
 import { NavLink, useLocation } from "react-router-dom";
-import SignIn from "../Pages/SignIn"
-import SignUp from "../Pages/SignUp"
+import { SignedIn, SignedOut, SignInButton, SignOutButton, useUser , UserProfile} from '@clerk/clerk-react'
+import { ChakraProvider } from '@chakra-ui/react'
+
 const Nav = () => {
   const { t, i18n } = useTranslation();
   const [showSelect, setShowSelect] = useState(false);
@@ -15,6 +17,7 @@ const Nav = () => {
   const [isSignIn, setSignIn] = useState(false);
   const [activeLink, setActiveLink] = useState(null);
   const location = useLocation();
+  const { user } = useUser()
 
   useEffect(() => {
     if (location.pathname === "/Skills") {
@@ -96,7 +99,7 @@ const Nav = () => {
       </div>
       <div className='signin-signup'>
         <p className='Signin' onClick={() => setSignIn(true)}>{t('Sign')}</p>  
-        <button onClick={toggleModal} className="button" role="button">{t('SignUp')}</button>
+        <button onClick={toggleModal} className="button" role="button"><span className="button-top">{t('SignUp')}</span></button>
       </div>
 
       <AnimatePresence>
@@ -122,7 +125,22 @@ const Nav = () => {
                 <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-indigo-600 grid place-items-center mx-auto">
                 </div>
                 <div className="flex gap-2">
-                  {isSignIn ? <SignIn /> : <SignUp />}
+                  {/* The children of the SignedOut component are rendered only when the user is signed out from the app. In this case, the app will render a SignInButton */}
+      <SignedOut>
+        <SignInButton>
+          <input className={'inputButton'} type="button" value={'Log in'} />
+        </SignInButton>
+      </SignedOut>
+        
+      {/* The children of the SignedIn component are rendered only when the user is signed in. In this case, the app will render the SignOutButton */}
+      <SignedIn>
+      <ChakraProvider>
+      <NavLink to="/user-profile">Profile</NavLink>
+    </ChakraProvider>
+        <SignOutButton>
+          <input className={'inputButton'} type="button" value={'Log out'} />
+        </SignOutButton>
+      </SignedIn>
                 </div>
               </div>
             </motion.div>

@@ -1,23 +1,45 @@
 .name{
- font-size: 25px;
+ font-size: 20px;
  text-wrap: wrap;
+ font-weight: 900;
+ font-family: 'Times New Roman', Times, serif;
+ text-align: left;
 position: relative;
-top: 130px;
-left: 20px;
+top: -40px;
+left: 5px;
+
     
 }
 .card{
     border: 3px solid black;
-    height: 300px;
-    width: 328px;
+    height: 326px;
+    width: 308px;
 }
 .category{
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 500;
-    margin-top: 160px;
-    margin-left: 20px;
+    font-size: 19px;
+    font-weight: 400;
+    text-wrap: nowrap;
+    color: rgb(77, 75, 75);
+    margin-top: -50px;
+    margin-left: 8px;
 }
 .img{
-    display: none;
+    height: 230px;
+    width: 302px;
+
 }
+.card:hover {
+    box-shadow: 11px 11px 11px #4141414e;
+   }
+   
+   .card:hover .name {
+    transform: translateY(-5%);
+   }
+   
+   .card:hover .category {
+
+    opacity: 1;
+   }
+   .name:hover {
+    transform: scale(1.1);
+   }
