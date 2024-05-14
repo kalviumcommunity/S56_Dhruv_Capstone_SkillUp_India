@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '../helpers/index'
 import Cover from '../Components/Cover'
-import Main from '../Components/Main'
 import Nav from "../Components/Nav"
 import { UserProfile } from '@clerk/clerk-react';
 import "./User.css"
