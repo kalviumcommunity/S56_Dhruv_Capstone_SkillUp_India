@@ -1,5 +1,4 @@
 import SimpleBar from 'simplebar-react'
-import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react'
 import { theme } from '../helpers/index'
 import Cover from '../Components/Cover'

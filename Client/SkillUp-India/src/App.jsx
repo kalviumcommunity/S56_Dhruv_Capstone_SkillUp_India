@@ -7,7 +7,7 @@ import Skills_Page from './Pages/Skills_Page';
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 import { ClerkProvider } from '@clerk/clerk-react';
 import UserProfilePage from './Pages/UserProfile';
-import contact from '../src/Pages/Contact';
+import Contact from '../src/Pages/Contact';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -49,7 +49,7 @@ function AppContent() {
           <Route path="/Skills" element={<Skills />} />
           <Route path="/skill/page" element={<Skills_Page />} />
           <Route path="/user-profile" element={<UserProfilePage />} />
-          <Route path="/contact" element={<contact/>} />
+          <Route path="/contact" element={<Contact/>} />
         </Routes>
       </ClerkProvider>
     </>
