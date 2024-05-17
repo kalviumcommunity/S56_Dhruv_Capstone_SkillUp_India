@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors');
 const Skill = require('./Models/Skills');
 require('dotenv').config();
 const port = process.env.PORT || 3000;
@@ -25,6 +25,8 @@ async function fetchUserList() {
     throw error; 
   }
 }
+
+// Function to save users to MongoDB
 async function saveUsersToDB(userList) {
   try {
     // Extracting the data array from the userList object
@@ -48,12 +50,6 @@ async function saveUsersToDB(userList) {
     throw error;
   }
 }
-
-
-// Call the asynchronous functions
-fetchUserList()
-  .then(userList => saveUsersToDB(userList))
-  .catch(error => console.error('Error:', error));
 
 // Function to fetch session list asynchronously
 async function fetchSessionList(queryParams) {
@@ -95,7 +91,7 @@ app.get('/users', async (req, res) => {
     const userList = await fetchUserList();
     res.json(userList); // Sending the user list as JSON response
   } catch (error) {
-    console.error('Error fetching users:', error);
+    console.error('Error fetching users list', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -144,10 +140,17 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+// Start the server and connect to MongoDB
+async function startServer() {
+  try {
+    await connectToDB();
+    await app.listen(port);
+    console.log(`Server is running on http://localhost:${port}`);
+  } catch (error) {
+    console.error('Error starting server:', error);
+    process.exit(1);
+  }
+}
 
-// Call the asynchronous functions
-connectToDB();
+// Call the asynchronous function to start the server and connect to MongoDB
+startServer();
