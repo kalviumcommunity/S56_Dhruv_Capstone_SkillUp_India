@@ -1,47 +1,44 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const Skill = require('./Models/Skills');
+const FormSubmission = require('./Models/Submission');
 require('dotenv').config();
 const port = process.env.PORT || 3000;
 const app = express();
 const { clerkClient } = require('@clerk/clerk-sdk-node');
 const User = require('./Models/User');
 
-// Middleware for parsing JSON bodies
-app.use(express.json());
-
-// Enable CORS for all origins
 app.use(cors());
+app.use(bodyParser.json());
 
 // Function to fetch user list asynchronously
 async function fetchUserList() {
   try {
     const userList = await clerkClient.users.getUserList();
     console.log('User List:', userList);
-    return userList; // Returning the user list
+    return userList;
   } catch (error) {
     console.error('Error fetching user list:', error);
-    throw error; 
+    throw error;
   }
 }
 
 // Function to save users to MongoDB
 async function saveUsersToDB(userList) {
   try {
-    // Extracting the data array from the userList object
     const users = userList.data;
 
     if (!Array.isArray(users)) {
       throw new Error('User list is not an array');
     }
 
-    // Iterating through the user list and save each user to MongoDB
     await Promise.all(users.map(async (user) => {
       await User.findOneAndUpdate(
-        { clerkUserId: user.id }, // Search criteria
-        user, // Data to update or insert
-        { upsert: true, new: true } // Options: upsert if not found, return updated document
+        { clerkUserId: user.id },
+        user,
+        { upsert: true, new: true }
       );
     }));
     console.log('User data saved to MongoDB');
@@ -56,23 +53,60 @@ async function fetchSessionList(queryParams) {
   try {
     const sessionList = await clerkClient.sessions.getSessionList(queryParams);
     console.log(sessionList);
-    return sessionList; // Returning the session list
+    return sessionList;
   } catch (error) {
     console.error('Error fetching session list:', error);
-    throw error; 
+    throw error;
   }
 }
 
 // Connect to MongoDB
 async function connectToDB() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     process.exit(1);
   }
 }
+
+// Define the POST route to handle form submissions
+app.post('/submit', async (req, res) => {
+  try {
+    const { name, email, message, file, files, certainFile } = req.body;
+
+    const newFormSubmission = new FormSubmission({
+      name,
+      email,
+      message,
+      file,
+      files,
+      certainFile
+    });
+
+    await newFormSubmission.save();
+
+    res.status(200).json({ message: 'Form submitted successfully!' });
+  } catch (error) {
+    console.error('Error handling form submission:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Define the GET route to fetch all form submissions
+app.get('/submissions', async (req, res) => {
+  try {
+    const submissions = await FormSubmission.find();
+    res.status(200).json(submissions);
+  } catch (error) {
+    console.error('Error fetching form submissions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // Define route to fetch skills
 app.get('/skills', async (req, res) => {
@@ -89,23 +123,23 @@ app.get('/skills', async (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const userList = await fetchUserList();
-    res.json(userList); // Sending the user list as JSON response
+    res.json(userList);
   } catch (error) {
     console.error('Error fetching users list', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 // Define route to update user info
 app.put('/users/:userId', async (req, res) => {
   try {
     const userId = req.params.userId;
-    const updatedUserInfo = req.body; // Updating the user information from request body
+    const updatedUserInfo = req.body;
 
-    // Update the user in the database
     const updatedUser = await User.findOneAndUpdate(
-      { clerkUserId: userId }, // Search criteria
-      updatedUserInfo,  // Data to update
-      { new: true } 
+      { clerkUserId: userId },
+      updatedUserInfo,
+      { new: true }
     );
 
     if (!updatedUser) {
@@ -122,8 +156,8 @@ app.put('/users/:userId', async (req, res) => {
 // Define route to fetch sessions
 app.get('/sessions', async (req, res) => {
   try {
-    const sessionList = await fetchSessionList(req.query); // Passing the query parameters if any
-    res.json(sessionList); 
+    const sessionList = await fetchSessionList(req.query);
+    res.json(sessionList);
   } catch (error) {
     console.error('Error fetching sessions:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -152,5 +186,4 @@ async function startServer() {
   }
 }
 
-// Call the asynchronous function to start the server and connect to MongoDB
 startServer();
