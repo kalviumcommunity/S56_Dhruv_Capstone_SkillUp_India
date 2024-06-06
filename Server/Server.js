@@ -1,17 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const Skill = require('./Models/Skills');
-const FormSubmission = require('./Models/Submission');
+const FormSubmission = require('./Models/Submission'); // Import FormSubmission model
 require('dotenv').config();
-const port = process.env.PORT || 3000;
-const app = express();
 const { clerkClient } = require('@clerk/clerk-sdk-node');
 const User = require('./Models/User');
+const Joi = require('joi'); // Import Joi
+
+const port = process.env.PORT || 3000;
+const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); // Use express.json() instead of body-parser
 
 // Function to fetch user list asynchronously
 async function fetchUserList() {
@@ -74,8 +75,23 @@ async function connectToDB() {
   }
 }
 
+// Define the validation schema using Joi
+const formSubmissionSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  message: Joi.string().required(),
+  file: Joi.string().optional(),
+  files: Joi.object().optional(),
+  certainFile: Joi.string().optional()
+});
+
 // Define the POST route to handle form submissions
 app.post('/submit', async (req, res) => {
+  const { error } = formSubmissionSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
+  }
+
   try {
     const { name, email, message, file, files, certainFile } = req.body;
 
