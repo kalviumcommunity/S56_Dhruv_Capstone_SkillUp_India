@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Nav from '../Components/Nav';
-import "./Contact.css"
+import "./Contact.css";
 import Footer from '../Components/Footer';
 import logo from '../assets/contact.gif';
 
@@ -52,20 +52,23 @@ export default function Base64FileUpload() {
       multipleFiles[`files-${index}`] = (await convertBase64(file));
     }
 
+    const formData = {
+      name,
+      email,
+      message,
+      file: file ? await convertBase64(file) : null,
+      ...multipleFiles,
+      certainFile: certainFile ? await convertBase64(certainFile) : null,
+    };
+
+    // Send data to your server
     fetch("http://localhost:3000/submit", {
       method: 'POST',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        file: file ? await convertBase64(file) : null,
-        ...multipleFiles,
-        certainFile: certainFile ? await convertBase64(certainFile) : null,
-      })
+      body: JSON.stringify(formData)
     })
     .then(response => response.json())
     .then(response => {
@@ -73,6 +76,25 @@ export default function Base64FileUpload() {
         setSubmitted(true);
         resetForm();
       } else {
+        setError(response.message);
+      }
+    })
+    .catch(error => {
+      setError(error.message ? error.message : error);
+    });
+
+    // Send data to Formcarry
+    fetch("https://formcarry.com/s/1k4jnmN6mqq", {
+      method: 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response.message !== 'Form submitted successfully!') {
         setError(response.message);
       }
     })
