@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Nav from '../Components/Nav';
-import "./Contact.css"
+import "./Contact.css";
 import Footer from '../Components/Footer';
 import logo from '../assets/contact.gif';
 
@@ -13,6 +13,7 @@ export default function Base64FileUpload() {
   const [certainFile, setCertainFile] = useState(null);
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function resetStates() {
     setSubmitted(false);
@@ -40,11 +41,32 @@ export default function Base64FileUpload() {
     });
   };
 
+  const validateFileSize = (file) => {
+    const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+    if (file.size > MAX_SIZE) {
+      setError('File size should not exceed 2MB');
+      return false;
+    }
+    return true;
+  };
+
   async function onSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
 
     resetStates();
+
+    if (file && !validateFileSize(file)) {
+      return;
+    }
+
+    for (const file of files) {
+      if (!validateFileSize(file)) {
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
 
     let multipleFiles = [];
 
@@ -52,33 +74,69 @@ export default function Base64FileUpload() {
       multipleFiles[`files-${index}`] = (await convertBase64(file));
     }
 
-    fetch("http://localhost:3000/submit", {
-      method: 'POST',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        file: file ? await convertBase64(file) : null,
-        ...multipleFiles,
-        certainFile: certainFile ? await convertBase64(certainFile) : null,
-      })
-    })
-    .then(response => response.json())
-    .then(response => {
-      if (response.message === 'Form submitted successfully!') {
+    const formData = {
+      name,
+      email,
+      message,
+      file: file ? await convertBase64(file) : null,
+      ...multipleFiles,
+      certainFile: certainFile ? await convertBase64(certainFile) : null,
+    };
+
+    // Send data to your server
+    try {
+      const response = await fetch("http://localhost:3000/submit", {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.message || 'Server error');
+      }
+
+      const responseData = await response.json();
+      if (responseData.message === 'Form submitted successfully!') {
         setSubmitted(true);
         resetForm();
       } else {
-        setError(response.message);
+        setError(responseData.message);
       }
-    })
-    .catch(error => {
-      setError(error.message ? error.message : error);
-    });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    // Send data to Formcarry
+    try {
+      const formcarryResponse = await fetch("https://formcarry.com/s/1k4jnmN6mqq", {
+        method: 'POST',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!formcarryResponse.ok) {
+        const errorResponse = await formcarryResponse.json();
+        throw new Error(errorResponse.message || 'Formcarry error');
+      }
+
+      const formcarryData = await formcarryResponse.json();
+      if (formcarryData.message !== 'Form submitted successfully!') {
+        setError(formcarryData.message);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const showNotification = submitted || error;
@@ -133,7 +191,7 @@ export default function Base64FileUpload() {
               <input id="single-file" type="file" onChange={(e) => setFile(e.target.files[0])} />
             </div>
             <div className="formcarry-block">
-              <button type="submit">Send</button>
+              <button type="submit" disabled={isSubmitting}>Send</button>
             </div>
 
             {showNotification && renderStatus()}

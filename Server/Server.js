@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // Use express.json() instead of body-parser
+app.use(express.json()); // Using express.json() instead of body-parser
 
 // Function to fetch user list asynchronously
 async function fetchUserList() {
@@ -75,7 +75,7 @@ async function connectToDB() {
   }
 }
 
-// Define the validation schema using Joi
+// Defining the validation schema using Joi
 const formSubmissionSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -85,7 +85,7 @@ const formSubmissionSchema = Joi.object({
   certainFile: Joi.string().optional()
 });
 
-// Define the POST route to handle form submissions
+// Defining the POST route to handle form submissions
 app.post('/submit', async (req, res) => {
   const { error } = formSubmissionSchema.validate(req.body);
   if (error) {
@@ -113,7 +113,7 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-// Define the GET route to fetch all form submissions
+// Defining the GET route to fetch all form submissions
 app.get('/submissions', async (req, res) => {
   try {
     const submissions = await FormSubmission.find();
@@ -169,7 +169,7 @@ app.put('/users/:userId', async (req, res) => {
   }
 });
 
-// Define route to fetch sessions
+// Defineing route to fetch sessions
 app.get('/sessions', async (req, res) => {
   try {
     const sessionList = await fetchSessionList(req.query);
@@ -180,7 +180,7 @@ app.get('/sessions', async (req, res) => {
   }
 });
 
-// Define route for homepage
+// Defining route for homepage
 app.get('/', async (req, res) => {
   try {
     res.send('Hello, Future World!');
